@@ -1,1 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Kontaktanzeigen · Herz sucht Herz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f4f1e9;
+      --ink: #171717;
+      --wine: #8c2443;
+      --petrol: #167b7b;
+      --yellow: #f1c84b;
+      --soft: #e7dfcf;
+      --white: #fffdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(140, 36, 67, 0.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 10%, rgba(22, 123, 123, 0.07) 0 2px, transparent 3px),
+        var(--paper);
+      background-size: 36px 36px, 52px 52px, auto;
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+
+    .page {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0 70px;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      position: relative;
+      border: 3px solid var(--ink);
+      background: var(--white);
+      padding: 34px 34px 30px;
+      box-shadow: 8px 8px 0 var(--wine);
+      overflow: hidden;
+    }
+
+    .since {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 5px 9px;
+      background: var(--petrol);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+    }
+
+    .heart {
+      color: var(--wine);
+    }
+
+    .subtitle {
+      margin: 20px 0 0;
+      font-size: clamp(18px, 3vw, 25px);
+      font-weight: 700;
+    }
+
+    .intro {
+      max-width: 650px;
+      margin: 13px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .shape-circle {
+      position: absolute;
+      width: 85px;
+      height: 85px;
+      right: 28px;
+      top: 27px;
+      border: 15px solid var(--yellow);
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .shape-triangle {
+      position: absolute;
+      right: 115px;
+      bottom: -16px;
+      width: 0;
+      height: 0;
+      border-left: 35px solid transparent;
+      border-right: 35px solid transparent;
+      border-bottom: 62px solid var(--petrol);
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    /* ---------- INSTRUCTION ---------- */
+
+    .instruction {
+      margin: 42px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+    }
+
+    .instruction::before {
+      content: "";
+      width: 36px;
+      height: 5px;
+      background: var(--wine);
+      flex: 0 0 auto;
+    }
+
+    /* ---------- AUDIO LIST ---------- */
+
+    .list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .ad {
+      position: relative;
+      display: grid;
+      grid-template-columns: 125px 1fr;
+      align-items: center;
+      min-height: 118px;
+      border: 2px solid var(--ink);
+      background: var(--white);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .ad:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .ad.active {
+      box-shadow: 6px 6px 0 var(--wine);
+    }
+
+    .number {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-right: 2px solid var(--ink);
+      background: var(--soft);
+    }
+
+    .number small {
+      margin-bottom: 2px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .number strong {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      color: var(--wine);
+    }
+
+    .player {
+      padding: 22px 25px;
+    }
+
+    .player-title {
+      margin: 0 0 13px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 105px 1fr 52px;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .play {
+      appearance: none;
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      color: var(--ink);
+      height: 40px;
+      cursor: pointer;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+
+    .play:hover {
+      background: var(--petrol);
+      color: white;
+    }
+
+    .play:active {
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+
+    .progress-wrap {
+      position: relative;
+      height: 22px;
+      display: flex;
+      align-items: center;
+    }
+
+    .progress {
+      width: 100%;
+      appearance: none;
+      height: 7px;
+      background: var(--soft);
+      border: 1px solid var(--ink);
+      cursor: pointer;
+    }
+
+    .progress::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--wine);
+      cursor: pointer;
+    }
+
+    .progress::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--wine);
+      cursor: pointer;
+    }
+
+    .time {
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* 90s accents */
+
+    .ad:nth-child(3n + 2) .number {
+      background: #dcebea;
+    }
+
+    .ad:nth-child(3n + 3) .number {
+      background: #f2dfaa;
+    }
+
+    .ad:nth-child(even) .number strong {
+      color: var(--petrol);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      margin-top: 42px;
+      padding-top: 18px;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .blink {
+      color: var(--wine);
+      font-weight: 800;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 650px) {
+      .page {
+        width: min(100% - 20px, 920px);
+        padding-top: 20px;
+      }
+
+      header {
+        padding: 25px 20px 24px;
+        box-shadow: 5px 5px 0 var(--wine);
+      }
+
+      h1 {
+        font-size: clamp(38px, 13vw, 62px);
+      }
+
+      .shape-circle {
+        width: 55px;
+        height: 55px;
+        border-width: 10px;
+        right: 14px;
+        top: 16px;
+        opacity: 0.5;
+      }
+
+      .shape-triangle {
+        display: none;
+      }
+
+      .ad {
+        grid-template-columns: 82px 1fr;
+        min-height: 120px;
+      }
+
+      .number strong {
+        font-size: 32px;
+      }
+
+      .player {
+        padding: 17px 14px;
+      }
+
+      .controls {
+        grid-template-columns: 82px 1fr;
+        gap: 11px;
+      }
+
+      .time {
+        grid-column: 2;
+        margin-top: -5px;
+        text-align: left;
+      }
+
+      .play {
+        height: 42px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <header>
+      <span class="since">Online-Partnervermittlung · Seit 1997</span>
+
+      <h1>
+        Kontakt<span class="heart">♥</span><br>
+        anzeigen
+      </h1>
+
+      <p class="subtitle">Herz sucht Herz · Wer passt zu wem?</p>
+
+      <p class="intro">
+        Höre dir die zehn Kontaktanzeigen an.
+        Du kannst die Reihenfolge selbst wählen und jede Anzeige mehrmals hören.
+        Finde für jede Person den passenden Partner.
+      </p>
+
+      <div class="shape-circle"></div>
+      <div class="shape-triangle"></div>
+    </header>
+
+    <div class="instruction">
+      Wähle eine Kontaktanzeige
+    </div>
+
+    <section class="list" id="audioList"></section>
+
+    <footer>
+      <span>♥ KONTAKTANZEIGEN · HERZ SUCHT HERZ</span>
+      <span class="blink">10 Singles warten auf dich!</span>
+    </footer>
+
+  </main>
+
+
+  <script>
+    /*
+      Die Dateinamen bleiben nur im Quellcode sichtbar.
+      Auf der Seite selbst erscheinen ausschließlich 01–10.
+    */
+
+    const ads = [
+      "Rainer.mp3",
+      "Larissa.mp3",
+      "Eckhard.mp3",
+      "Andreas.mp3",
+      "Ulrike.mp3",
+      "KeineHunde.mp3",
+      "Andre.mp3",
+      "Ricarda.mp3",
+      "Jürgen.mp3",
+      "Rinzewind.mp3"
+    ];
+
+    const list = document.getElementById("audioList");
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "00:00";
+
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+
+      return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+    }
+
+    ads.forEach((file, index) => {
+      const card = document.createElement("article");
+      card.className = "ad";
+
+      const number = String(index + 1).padStart(2, "0");
+
+      card.innerHTML = `
+        <div class="number">
+          <small>Anzeige</small>
+          <strong>${number}</strong>
+        </div>
+
+        <div class="player">
+          <p class="player-title">Kontaktanzeige ${number}</p>
+
+          <div class="controls">
+            <button class="play" type="button">
+              ▶ Play
+            </button>
+
+            <div class="progress-wrap">
+              <input
+                class="progress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Audio-Fortschritt"
+              >
+            </div>
+
+            <span class="time">00:00</span>
+          </div>
+
+          <audio preload="metadata" src="${file}"></audio>
+        </div>
+      `;
+
+      list.appendChild(card);
+    });
+
+
+    const cards = [...document.querySelectorAll(".ad")];
+
+    cards.forEach(card => {
+      const audio = card.querySelector("audio");
+      const button = card.querySelector(".play");
+      const progress = card.querySelector(".progress");
+      const time = card.querySelector(".time");
+
+      audio.addEventListener("loadedmetadata", () => {
+        time.textContent = formatTime(audio.duration);
+      });
+
+      button.addEventListener("click", () => {
+
+        /*
+          Sobald ein neuer Player startet,
+          werden alle anderen gestoppt.
+        */
+
+        cards.forEach(otherCard => {
+          if (otherCard === card) return;
+
+          const otherAudio = otherCard.querySelector("audio");
+          const otherButton = otherCard.querySelector(".play");
+
+          if (!otherAudio.paused) {
+            otherAudio.pause();
+          }
+
+          otherButton.textContent = "▶ Play";
+          otherCard.classList.remove("active");
+        });
+
+        if (audio.paused) {
+          audio.play();
+          button.textContent = "Ⅱ Pause";
+          card.classList.add("active");
+        } else {
+          audio.pause();
+          button.textContent = "▶ Play";
+          card.classList.remove("active");
+        }
+      });
+
+      audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+
+        progress.value =
+          (audio.currentTime / audio.duration) * 100;
+
+        time.textContent =
+          `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+      });
+
+      progress.addEventListener("input", () => {
+        if (!audio.duration) return;
+
+        audio.currentTime =
+          (progress.value / 100) * audio.duration;
+      });
+
+      audio.addEventListener("ended", () => {
+        button.textContent = "▶ Play";
+        progress.value = 0;
+        audio.currentTime = 0;
+        card.classList.remove("active");
+        time.textContent = formatTime(audio.duration);
+      });
+    });
+  </script>
+
+</body>
+</html>
