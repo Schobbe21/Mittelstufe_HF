@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontaktanzeigen · Herz sucht Herz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4f1e9;--ink:#161616;--wine:#8c2443;--petrol:#167b7b;--yellow:#f1c84b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',Arial,sans-serif}button,input{font:inherit}main{max-width:1080px;margin:auto;padding:24px 20px 64px}.eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.17em;text-align:center}.masthead{text-align:center;border-top:7px solid var(--ink);border-bottom:7px solid var(--ink);padding:22px 8px 26px;background:#fff9ed}.masthead h1{font:clamp(32px,6vw,76px)/1.05 'Archivo Black',sans-serif;color:var(--wine);letter-spacing:-.05em;margin:12px 0;text-shadow:3px 3px 0 var(--yellow)}.masthead h1 span{color:var(--petrol)}.subtitle{font-size:clamp(17px,2.5vw,23px);font-weight:700}.intro{max-width:740px;margin:20px auto 0;text-align:center;line-height:1.6}.section-title{font:clamp(23px,3.5vw,37px)/1.2 'Archivo Black',sans-serif;margin:40px 0 16px;text-transform:uppercase}.collage{background:white;border:3px solid var(--ink);box-shadow:9px 9px 0 var(--petrol);padding:10px}.collage img{display:block;width:100%;height:auto}.stamp{text-align:center;color:var(--wine);font-weight:700;letter-spacing:.04em;margin:24px 0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.audio-card{border:3px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 var(--yellow);padding:18px;min-width:0}.card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}.number{background:var(--wine);color:#fff;border:2px solid var(--ink);font:18px 'Archivo Black',sans-serif;min-width:45px;height:45px;display:grid;place-items:center}.person{font:clamp(17px,2.3vw,23px) 'Archivo Black',sans-serif;overflow-wrap:anywhere}.player-row{display:flex;align-items:center;gap:12px}.play{flex:none;width:49px;height:49px;border:2px solid var(--ink);background:var(--petrol);color:white;cursor:pointer;font-size:21px;box-shadow:3px 3px 0 var(--ink)}.play:hover{background:var(--wine)}.progress{flex:1;min-width:0;accent-color:var(--wine);cursor:pointer}.time{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}.speed-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:17px;border-top:1px dashed #aaa;padding-top:12px}.speed-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}.speed-buttons{display:flex;gap:5px}.speed{background:var(--paper);border:2px solid var(--ink);padding:6px 10px;cursor:pointer;font-size:13px;font-weight:700;min-width:52px}.speed[aria-pressed="true"]{background:var(--wine);color:#fff}.speed:focus-visible,.play:focus-visible,.progress:focus-visible{outline:3px solid var(--petrol);outline-offset:3px}.status{min-height:17px;font-size:12px;color:var(--wine);margin-top:8px}.footer{border-top:4px solid var(--ink);margin-top:54px;padding-top:16px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.07em}.stripe{height:12px;margin-top:20px;background:repeating-linear-gradient(90deg,var(--wine) 0 40px,var(--yellow) 40px 80px,var(--petrol) 80px 120px)}@media(max-width:650px){main{padding:12px 12px 45px}.cards{grid-template-columns:1fr}.audio-card{padding:14px}.masthead{padding:18px 8px}.time{font-size:11px}}
+</style>
+</head>
+<body><main>
+<header class="masthead"><div class="eyebrow">Online-Partnervermittlung · Seit 1997</div><h1>KONTAKT<span>♥</span><br>ANZEIGEN</h1><div class="subtitle">Herz sucht Herz · Wer passt zu wem?</div></header>
+<p class="intro">Zehn Singles suchen die große Liebe. Sieh dir die Personen an und höre ihre Kontaktanzeigen. Finde anschließend heraus, wer wirklich zu wem passt.</p>
+<h2 class="section-title">Unsere Singles</h2><div class="collage"><img src="Collage.png" alt="Collage der zehn Singles" onerror="this.alt='Collage.png konnte nicht geladen werden. Bitte Dateinamen prüfen.'"></div>
+<p class="stamp">♥ 10 Singles · 10 Geschichten · vielleicht 5 große Lieben ♥</p>
+<h2 class="section-title">Die Kontaktanzeigen</h2><div class="cards" id="cards"></div>
+<footer class="footer">Optimiert für 800 × 600 · 56k-Modem empfohlen<div class="stripe"></div></footer>
+</main>
+<script>
+const ads=[
+{name:'Rainer',file:'Rainer.mp3'},
+{name:'Larissa',file:'Larissa.mp3'},
+{name:'Eckhard',file:'Eckhard.mp3'},
+{name:'Andreas',file:'Andreas.mp3'},
+{name:'Ulrike',file:'Ulrike.mp3'},
+{name:'Unbekannt',file:'KeineHunde.mp3'},
+{name:'André',file:'Andre.mp3'},
+{name:'Ricarda',file:'Ricarda.mp3'},
+{name:'Jürgen',file:'Juergen.mp3'},
+{name:'Rinzewind',file:'Rinzewind.mp3'}
+];
+const container=document.getElementById('cards');const players=[];
+function fmt(t){if(!Number.isFinite(t))return '0:00';return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+ads.forEach((ad,i)=>{
+const card=document.createElement('article');card.className='audio-card';
+card.innerHTML=`<div class="card-head"><div class="number">${String(i+1).padStart(2,'0')}</div><div class="person"></div></div><div class="player-row"><button class="play" type="button" aria-label="Audio abspielen">▶</button><input class="progress" type="range" min="0" max="1000" value="0" aria-label="Position im Audio"><span class="time">0:00 / 0:00</span></div><div class="speed-row"><span class="speed-label">Tempo</span><div class="speed-buttons" role="group" aria-label="Wiedergabegeschwindigkeit"><button type="button" class="speed" data-rate="0.75" aria-pressed="false">0,75×</button><button type="button" class="speed" data-rate="0.9" aria-pressed="false">0,9×</button><button type="button" class="speed" data-rate="1" aria-pressed="true">1×</button></div></div><div class="status" role="status"></div>`;
+card.querySelector('.person').textContent=ad.name;container.append(card);
+const audio=new Audio(ad.file);audio.preload='metadata';audio.preservesPitch=true;
+const play=card.querySelector('.play'),progress=card.querySelector('.progress'),time=card.querySelector('.time'),status=card.querySelector('.status');players.push(audio);
+function refresh(){const duration=audio.duration;progress.value=Number.isFinite(duration)&&duration>0?Math.round(audio.currentTime/duration*1000):0;time.textContent=fmt(audio.currentTime)+' / '+fmt(duration)}
+function icon(){play.textContent=audio.paused?'▶':'Ⅱ';play.setAttribute('aria-label',audio.paused?'Audio abspielen':'Audio pausieren')}
+play.addEventListener('click',async()=>{if(!audio.paused){audio.pause();return}players.forEach(p=>{if(p!==audio)p.pause()});try{await audio.play();status.textContent=''}catch(e){status.textContent='Audio nicht verfügbar – bitte Dateinamen prüfen.'}});
+progress.addEventListener('input',()=>{if(Number.isFinite(audio.duration)&&audio.duration>0)audio.currentTime=Number(progress.value)/1000*audio.duration});
+card.querySelectorAll('.speed').forEach(btn=>btn.addEventListener('click',()=>{audio.playbackRate=Number(btn.dataset.rate);card.querySelectorAll('.speed').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)))}));
+audio.addEventListener('timeupdate',refresh);audio.addEventListener('loadedmetadata',refresh);audio.addEventListener('durationchange',refresh);audio.addEventListener('play',icon);audio.addEventListener('pause',icon);audio.addEventListener('ended',()=>{icon();refresh()});audio.addEventListener('error',()=>{status.textContent='Audio nicht gefunden: '+ad.file});
+});
+</script></body></html>
