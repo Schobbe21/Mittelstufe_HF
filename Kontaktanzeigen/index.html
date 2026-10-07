@@ -33,8 +33,8 @@
       margin: 0;
       min-height: 100vh;
       background:
-        radial-gradient(circle at 15% 20%, rgba(140, 36, 67, 0.06) 0 2px, transparent 3px),
-        radial-gradient(circle at 80% 10%, rgba(22, 123, 123, 0.07) 0 2px, transparent 3px),
+        radial-gradient(circle at 15% 20%, rgba(140,36,67,.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 10%, rgba(22,123,123,.07) 0 2px, transparent 3px),
         var(--paper);
       background-size: 36px 36px, 52px 52px, auto;
       color: var(--ink);
@@ -42,41 +42,40 @@
     }
 
     .page {
-      width: min(920px, calc(100% - 32px));
+      width: min(1000px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 54px 0 70px;
+      padding: 45px 0 70px;
     }
 
-    /* ---------- HEADER ---------- */
+    /* HEADER */
 
     header {
       position: relative;
       border: 3px solid var(--ink);
       background: var(--white);
-      padding: 34px 34px 30px;
+      padding: 32px 34px 30px;
       box-shadow: 8px 8px 0 var(--wine);
       overflow: hidden;
     }
 
     .since {
       display: inline-block;
-      margin-bottom: 18px;
+      margin-bottom: 17px;
       padding: 5px 9px;
       background: var(--petrol);
       color: white;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      max-width: 760px;
       font-family: "Archivo Black", sans-serif;
-      font-size: clamp(42px, 8vw, 82px);
-      line-height: 0.92;
-      letter-spacing: -0.045em;
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: .92;
+      letter-spacing: -.045em;
       text-transform: uppercase;
     }
 
@@ -85,150 +84,172 @@
     }
 
     .subtitle {
-      margin: 20px 0 0;
-      font-size: clamp(18px, 3vw, 25px);
+      margin: 19px 0 0;
+      font-size: clamp(18px, 3vw, 24px);
       font-weight: 700;
     }
 
     .intro {
-      max-width: 650px;
-      margin: 13px 0 0;
+      max-width: 680px;
+      margin: 12px 0 0;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
-    .shape-circle {
+    .circle {
       position: absolute;
-      width: 85px;
-      height: 85px;
+      width: 82px;
+      height: 82px;
       right: 28px;
       top: 27px;
-      border: 15px solid var(--yellow);
+      border: 14px solid var(--yellow);
       border-radius: 50%;
       transform: rotate(-8deg);
-      opacity: 0.9;
+      opacity: .9;
       pointer-events: none;
     }
 
-    .shape-triangle {
-      position: absolute;
-      right: 115px;
-      bottom: -16px;
-      width: 0;
-      height: 0;
-      border-left: 35px solid transparent;
-      border-right: 35px solid transparent;
-      border-bottom: 62px solid var(--petrol);
-      transform: rotate(15deg);
-      pointer-events: none;
+    /* COLLAGE */
+
+    .collage-section {
+      margin-top: 42px;
     }
 
-    /* ---------- INSTRUCTION ---------- */
-
-    .instruction {
-      margin: 42px 0 18px;
+    .section-label {
       display: flex;
       align-items: center;
-      gap: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      gap: 12px;
+      margin-bottom: 14px;
       font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
     }
 
-    .instruction::before {
+    .section-label::before {
       content: "";
       width: 36px;
       height: 5px;
       background: var(--wine);
-      flex: 0 0 auto;
     }
 
-    /* ---------- AUDIO LIST ---------- */
+    .collage-frame {
+      position: relative;
+      padding: 9px;
+      background: var(--white);
+      border: 3px solid var(--ink);
+      box-shadow: 7px 7px 0 var(--petrol);
+    }
+
+    .collage-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .collage-note {
+      display: inline-block;
+      margin: 14px 0 0;
+      padding: 7px 11px;
+      background: var(--yellow);
+      border: 2px solid var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      transform: rotate(-1deg);
+    }
+
+    /* AUDIO */
+
+    .audio-section {
+      margin-top: 48px;
+    }
+
+    .audio-intro {
+      margin: 0 0 22px;
+      max-width: 700px;
+      line-height: 1.55;
+    }
 
     .list {
       display: grid;
-      gap: 15px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .ad {
       position: relative;
       display: grid;
-      grid-template-columns: 125px 1fr;
-      align-items: center;
-      min-height: 118px;
-      border: 2px solid var(--ink);
+      grid-template-columns: 80px 1fr;
+      min-height: 122px;
       background: var(--white);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .ad:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 var(--ink);
+      border: 2px solid var(--ink);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
 
     .ad.active {
-      box-shadow: 6px 6px 0 var(--wine);
+      box-shadow: 5px 5px 0 var(--wine);
+      transform: translate(-2px, -2px);
     }
 
     .number {
-      align-self: stretch;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       border-right: 2px solid var(--ink);
       background: var(--soft);
     }
 
-    .number small {
-      margin-bottom: 2px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
     .number strong {
       font-family: "Archivo Black", sans-serif;
-      font-size: 42px;
-      line-height: 1;
+      font-size: 31px;
       color: var(--wine);
     }
 
-    .player {
-      padding: 22px 25px;
+    .ad:nth-child(even) .number {
+      background: #dcebea;
     }
 
-    .player-title {
-      margin: 0 0 13px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+    .ad:nth-child(3n) .number {
+      background: #f2dfaa;
+    }
+
+    .ad:nth-child(even) .number strong {
+      color: var(--petrol);
+    }
+
+    .player {
+      min-width: 0;
+      padding: 17px 18px;
+    }
+
+    .name {
+      margin: 0 0 12px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 20px;
+      line-height: 1;
       text-transform: uppercase;
     }
 
     .controls {
       display: grid;
-      grid-template-columns: 105px 1fr 52px;
+      grid-template-columns: 86px 1fr;
+      gap: 11px;
       align-items: center;
-      gap: 15px;
     }
 
     .play {
       appearance: none;
+      height: 38px;
       border: 2px solid var(--ink);
       background: var(--yellow);
       color: var(--ink);
-      height: 40px;
+      box-shadow: 3px 3px 0 var(--ink);
       cursor: pointer;
       font-family: "IBM Plex Sans", sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.06em;
       text-transform: uppercase;
-      box-shadow: 3px 3px 0 var(--ink);
-      transition: transform 0.08s ease, box-shadow 0.08s ease;
     }
 
     .play:hover {
@@ -241,145 +262,129 @@
       box-shadow: none;
     }
 
-    .progress-wrap {
-      position: relative;
-      height: 22px;
-      display: flex;
-      align-items: center;
-    }
-
     .progress {
       width: 100%;
       appearance: none;
       height: 7px;
-      background: var(--soft);
       border: 1px solid var(--ink);
+      background: var(--soft);
       cursor: pointer;
     }
 
     .progress::-webkit-slider-thumb {
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       border: 2px solid var(--ink);
       border-radius: 0;
       background: var(--wine);
-      cursor: pointer;
     }
 
     .progress::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       border: 2px solid var(--ink);
       border-radius: 0;
       background: var(--wine);
-      cursor: pointer;
     }
 
     .time {
-      font-size: 13px;
+      grid-column: 2;
+      margin-top: -5px;
+      font-size: 11px;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
-      text-align: right;
     }
 
     audio {
       display: none;
     }
 
-    /* 90s accents */
+    /* 90s BOTTOM STRIP */
 
-    .ad:nth-child(3n + 2) .number {
-      background: #dcebea;
+    .retro-strip {
+      margin-top: 45px;
+      height: 12px;
+      border: 2px solid var(--ink);
+      background:
+        repeating-linear-gradient(
+          135deg,
+          var(--wine) 0 18px,
+          var(--wine) 18px 36px,
+          var(--yellow) 36px 54px,
+          var(--yellow) 54px 72px,
+          var(--petrol) 72px 90px,
+          var(--petrol) 90px 108px
+        );
     }
-
-    .ad:nth-child(3n + 3) .number {
-      background: #f2dfaa;
-    }
-
-    .ad:nth-child(even) .number strong {
-      color: var(--petrol);
-    }
-
-    /* ---------- FOOTER ---------- */
 
     footer {
-      margin-top: 42px;
-      padding-top: 18px;
-      border-top: 2px solid var(--ink);
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      font-size: 12px;
-      font-weight: 600;
+      margin-top: 15px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
     }
 
-    .blink {
-      color: var(--wine);
-      font-weight: 800;
-    }
+    /* MOBILE */
 
-    /* ---------- MOBILE ---------- */
-
-    @media (max-width: 650px) {
+    @media (max-width: 760px) {
       .page {
-        width: min(100% - 20px, 920px);
+        width: min(100% - 20px, 1000px);
         padding-top: 20px;
       }
 
       header {
-        padding: 25px 20px 24px;
+        padding: 24px 20px;
         box-shadow: 5px 5px 0 var(--wine);
       }
 
-      h1 {
-        font-size: clamp(38px, 13vw, 62px);
-      }
-
-      .shape-circle {
+      .circle {
         width: 55px;
         height: 55px;
-        border-width: 10px;
-        right: 14px;
-        top: 16px;
-        opacity: 0.5;
+        border-width: 9px;
+        right: 13px;
+        top: 14px;
+        opacity: .45;
       }
 
-      .shape-triangle {
-        display: none;
+      .collage-frame {
+        padding: 5px;
+        box-shadow: 5px 5px 0 var(--petrol);
       }
 
-      .ad {
-        grid-template-columns: 82px 1fr;
-        min-height: 120px;
-      }
-
-      .number strong {
-        font-size: 32px;
-      }
-
-      .player {
-        padding: 17px 14px;
-      }
-
-      .controls {
-        grid-template-columns: 82px 1fr;
-        gap: 11px;
-      }
-
-      .time {
-        grid-column: 2;
-        margin-top: -5px;
-        text-align: left;
-      }
-
-      .play {
-        height: 42px;
+      .list {
+        grid-template-columns: 1fr;
       }
 
       footer {
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .ad {
+        grid-template-columns: 62px 1fr;
+      }
+
+      .number strong {
+        font-size: 25px;
+      }
+
+      .player {
+        padding: 15px 12px;
+      }
+
+      .name {
+        font-size: 17px;
+      }
+
+      .controls {
+        grid-template-columns: 76px 1fr;
       }
     }
   </style>
@@ -387,185 +392,253 @@
 
 <body>
 
-  <main class="page">
+<main class="page">
 
-    <header>
-      <span class="since">Online-Partnervermittlung · Seit 1997</span>
+  <header>
+    <span class="since">Online-Partnervermittlung · Seit 1997</span>
 
-      <h1>
-        Kontakt<span class="heart">♥</span><br>
-        anzeigen
-      </h1>
+    <h1>
+      Kontakt<span class="heart">♥</span><br>
+      anzeigen
+    </h1>
 
-      <p class="subtitle">Herz sucht Herz · Wer passt zu wem?</p>
+    <p class="subtitle">Herz sucht Herz · Wer passt zu wem?</p>
 
-      <p class="intro">
-        Höre dir die zehn Kontaktanzeigen an.
-        Du kannst die Reihenfolge selbst wählen und jede Anzeige mehrmals hören.
-        Finde für jede Person den passenden Partner.
-      </p>
+    <p class="intro">
+      Zehn Singles suchen die große Liebe.
+      Sieh dir die Personen an und höre ihre Kontaktanzeigen.
+      Finde anschließend heraus, wer wirklich zu wem passt.
+    </p>
 
-      <div class="shape-circle"></div>
-      <div class="shape-triangle"></div>
-    </header>
+    <div class="circle"></div>
+  </header>
 
-    <div class="instruction">
-      Wähle eine Kontaktanzeige
+
+  <section class="collage-section">
+
+    <div class="section-label">
+      Unsere Singles
     </div>
 
-    <section class="list" id="audioList"></section>
+    <div class="collage-frame">
+      <img
+        src="Collage.png"
+        alt="Collage mit zehn Personen der Kontaktanzeigen"
+      >
+    </div>
 
-    <footer>
-      <span>♥ KONTAKTANZEIGEN · HERZ SUCHT HERZ</span>
-      <span class="blink">10 Singles warten auf dich!</span>
-    </footer>
+    <div class="collage-note">
+      ♥ 10 Singles · 10 Geschichten · vielleicht 5 große Lieben
+    </div>
 
-  </main>
+  </section>
 
 
-  <script>
-    /*
-      Die Dateinamen bleiben nur im Quellcode sichtbar.
-      Auf der Seite selbst erscheinen ausschließlich 01–10.
-    */
+  <section class="audio-section">
 
-    const ads = [
-      "Rainer.mp3",
-      "Larissa.mp3",
-      "Eckhard.mp3",
-      "Andreas.mp3",
-      "Ulrike.mp3",
-      "KeineHunde.mp3",
-      "Andre.mp3",
-      "Ricarda.mp3",
-      "Jürgen.mp3",
-      "Rinzewind.mp3"
-    ];
+    <div class="section-label">
+      Die Kontaktanzeigen
+    </div>
 
-    const list = document.getElementById("audioList");
+    <p class="audio-intro">
+      Höre dir die zehn Anzeigen an. Du kannst die Reihenfolge selbst wählen
+      und jede Anzeige mehrmals hören.
+    </p>
 
-    function formatTime(seconds) {
-      if (!Number.isFinite(seconds)) return "00:00";
+    <div class="list" id="audioList"></div>
 
-      const min = Math.floor(seconds / 60);
-      const sec = Math.floor(seconds % 60);
+  </section>
 
-      return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
-    }
 
-    ads.forEach((file, index) => {
-      const card = document.createElement("article");
-      card.className = "ad";
+  <div class="retro-strip"></div>
 
-      const number = String(index + 1).padStart(2, "0");
+  <footer>
+    <span>♥ Kontaktanzeigen · Herz sucht Herz</span>
+    <span>Optimiert für 800 × 600 · 56k-Modem empfohlen</span>
+  </footer>
 
-      card.innerHTML = `
-        <div class="number">
-          <small>Anzeige</small>
-          <strong>${number}</strong>
+</main>
+
+
+<script>
+  /*
+    Reihenfolge der Webseite.
+    Die Namen gehören direkt zu den jeweiligen Audiodateien.
+  */
+
+  const ads = [
+    { name: "Rainer",     file: "Rainer.mp3" },
+    { name: "Larissa",    file: "Larissa.mp3" },
+    { name: "Eckhard",    file: "Eckhard.mp3" },
+    { name: "Andreas",    file: "Andreas.mp3" },
+    { name: "Ulrike",     file: "Ulrike.mp3" },
+    { name: "Unbekannt",  file: "KeineHunde.mp3" },
+    { name: "André",      file: "Andre.mp3" },
+    { name: "Ricarda",    file: "Ricarda.mp3" },
+    { name: "Jürgen",     file: "Juergen.mp3" },
+    { name: "Rinzewind",  file: "Rinzewind.mp3" }
+  ];
+
+  const list = document.getElementById("audioList");
+
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds)) return "00:00";
+
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+
+    return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  }
+
+  ads.forEach((item, index) => {
+
+    const number = String(index + 1).padStart(2, "0");
+
+    const card = document.createElement("article");
+    card.className = "ad";
+
+    card.innerHTML = `
+      <div class="number">
+        <strong>${number}</strong>
+      </div>
+
+      <div class="player">
+        <h2 class="name">${item.name}</h2>
+
+        <div class="controls">
+
+          <button
+            class="play"
+            type="button"
+            aria-label="${item.name} anhören"
+          >
+            ▶ Play
+          </button>
+
+          <input
+            class="progress"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+            aria-label="Audio-Fortschritt"
+          >
+
+          <span class="time">00:00</span>
+
         </div>
 
-        <div class="player">
-          <p class="player-title">Kontaktanzeige ${number}</p>
+        <audio
+          preload="metadata"
+          src="${item.file}"
+        ></audio>
 
-          <div class="controls">
-            <button class="play" type="button">
-              ▶ Play
-            </button>
+      </div>
+    `;
 
-            <div class="progress-wrap">
-              <input
-                class="progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
-                aria-label="Audio-Fortschritt"
-              >
-            </div>
+    list.appendChild(card);
+  });
 
-            <span class="time">00:00</span>
-          </div>
 
-          <audio preload="metadata" src="${file}"></audio>
-        </div>
-      `;
+  const cards = [...document.querySelectorAll(".ad")];
 
-      list.appendChild(card);
+  cards.forEach(card => {
+
+    const audio = card.querySelector("audio");
+    const button = card.querySelector(".play");
+    const progress = card.querySelector(".progress");
+    const time = card.querySelector(".time");
+
+    audio.addEventListener("loadedmetadata", () => {
+      time.textContent = `00:00 / ${formatTime(audio.duration)}`;
     });
 
 
-    const cards = [...document.querySelectorAll(".ad")];
+    button.addEventListener("click", () => {
 
-    cards.forEach(card => {
-      const audio = card.querySelector("audio");
-      const button = card.querySelector(".play");
-      const progress = card.querySelector(".progress");
-      const time = card.querySelector(".time");
+      /*
+        Immer nur eine Anzeige gleichzeitig.
+        Die Position der anderen Audios bleibt erhalten.
+      */
 
-      audio.addEventListener("loadedmetadata", () => {
-        time.textContent = formatTime(audio.duration);
-      });
+      cards.forEach(otherCard => {
 
-      button.addEventListener("click", () => {
+        if (otherCard === card) return;
 
-        /*
-          Sobald ein neuer Player startet,
-          werden alle anderen gestoppt.
-        */
+        const otherAudio =
+          otherCard.querySelector("audio");
 
-        cards.forEach(otherCard => {
-          if (otherCard === card) return;
+        const otherButton =
+          otherCard.querySelector(".play");
 
-          const otherAudio = otherCard.querySelector("audio");
-          const otherButton = otherCard.querySelector(".play");
-
-          if (!otherAudio.paused) {
-            otherAudio.pause();
-          }
-
-          otherButton.textContent = "▶ Play";
-          otherCard.classList.remove("active");
-        });
-
-        if (audio.paused) {
-          audio.play();
-          button.textContent = "Ⅱ Pause";
-          card.classList.add("active");
-        } else {
-          audio.pause();
-          button.textContent = "▶ Play";
-          card.classList.remove("active");
+        if (!otherAudio.paused) {
+          otherAudio.pause();
         }
+
+        otherButton.textContent = "▶ Play";
+        otherCard.classList.remove("active");
       });
 
-      audio.addEventListener("timeupdate", () => {
-        if (!audio.duration) return;
 
-        progress.value =
-          (audio.currentTime / audio.duration) * 100;
+      if (audio.paused) {
 
-        time.textContent =
-          `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-      });
+        audio.play();
 
-      progress.addEventListener("input", () => {
-        if (!audio.duration) return;
+        button.textContent = "Ⅱ Pause";
+        card.classList.add("active");
 
-        audio.currentTime =
-          (progress.value / 100) * audio.duration;
-      });
+      } else {
 
-      audio.addEventListener("ended", () => {
+        audio.pause();
+
         button.textContent = "▶ Play";
-        progress.value = 0;
-        audio.currentTime = 0;
         card.classList.remove("active");
-        time.textContent = formatTime(audio.duration);
-      });
+
+      }
+
     });
-  </script>
+
+
+    audio.addEventListener("timeupdate", () => {
+
+      if (!audio.duration) return;
+
+      progress.value =
+        (audio.currentTime / audio.duration) * 100;
+
+      time.textContent =
+        `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+
+    });
+
+
+    progress.addEventListener("input", () => {
+
+      if (!audio.duration) return;
+
+      audio.currentTime =
+        (progress.value / 100) * audio.duration;
+
+    });
+
+
+    audio.addEventListener("ended", () => {
+
+      button.textContent = "▶ Play";
+
+      progress.value = 0;
+      audio.currentTime = 0;
+
+      card.classList.remove("active");
+
+      time.textContent =
+        `00:00 / ${formatTime(audio.duration)}`;
+
+    });
+
+  });
+</script>
 
 </body>
 </html>
