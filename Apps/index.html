@@ -1,1 +1,513 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Welche App passt zu mir?</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --paper: #f4f0df;
+    --ink: #111111;
+    --pink: #ee3f86;
+    --blue: #4f9de8;
+    --yellow: #f4cf43;
+    --green: #63bd75;
+    --purple: #8e62ce;
+    --orange: #ee8b42;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        #161b25;
+    background-size: 18px 18px;
+    color: var(--ink);
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.page {
+    width: min(1120px, calc(100% - 32px));
+    margin: 34px auto;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 12px 12px 0 var(--pink);
+}
+
+/* HEADER */
+
+header {
+    position: relative;
+    padding: 38px 30px 30px;
+    text-align: center;
+    border-bottom: 4px solid var(--ink);
+    overflow: hidden;
+}
+
+header::before,
+header::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 28px;
+    background: var(--yellow);
+    transform: rotate(-8deg);
+    z-index: 0;
+}
+
+header::before {
+    left: -35px;
+    top: 24px;
+}
+
+header::after {
+    right: -35px;
+    bottom: 18px;
+    background: var(--blue);
+    transform: rotate(7deg);
+}
+
+.kicker {
+    position: relative;
+    z-index: 1;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+h1 {
+    position: relative;
+    z-index: 1;
+    margin: 8px 0 4px;
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(38px, 7vw, 76px);
+    line-height: .95;
+    text-transform: uppercase;
+    letter-spacing: -0.045em;
+}
+
+h1 span {
+    color: var(--pink);
+    -webkit-text-stroke: 2px var(--ink);
+    text-shadow: 4px 4px 0 var(--yellow);
+}
+
+.subtitle {
+    position: relative;
+    z-index: 1;
+    margin: 18px auto 0;
+    max-width: 650px;
+    font-size: 18px;
+    line-height: 1.45;
+}
+
+/* COLLAGE */
+
+.hero {
+    padding: 30px;
+    border-bottom: 4px solid var(--ink);
+}
+
+.collage-frame {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.collage-frame::before {
+    content: "DIE 10 APP-SUCHER";
+    position: absolute;
+    z-index: 2;
+    top: -15px;
+    left: -14px;
+    padding: 8px 13px;
+    background: var(--yellow);
+    border: 3px solid var(--ink);
+    font-family: "Archivo Black", sans-serif;
+    font-size: 14px;
+    transform: rotate(-2deg);
+}
+
+.collage-frame img {
+    display: block;
+    width: 100%;
+    border: 4px solid var(--ink);
+    box-shadow: 9px 9px 0 var(--blue);
+}
+
+.instructions {
+    max-width: 760px;
+    margin: 28px auto 0;
+    padding: 15px 20px;
+    border: 3px solid var(--ink);
+    background: white;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.instructions strong {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+/* AUDIO */
+
+.audio-section {
+    padding: 32px 30px 42px;
+}
+
+.section-title {
+    margin: 0 0 8px;
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    text-transform: uppercase;
+}
+
+.section-note {
+    margin: 0 0 26px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+}
+
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.card {
+    position: relative;
+    background: white;
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    padding: 17px;
+}
+
+.card:nth-child(5n+1) { --accent: var(--pink); }
+.card:nth-child(5n+2) { --accent: var(--blue); }
+.card:nth-child(5n+3) { --accent: var(--yellow); }
+.card:nth-child(5n+4) { --accent: var(--green); }
+.card:nth-child(5n+5) { --accent: var(--purple); }
+
+.card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.number {
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    height: 46px;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    background: var(--accent);
+    font-family: "Archivo Black", sans-serif;
+    font-size: 20px;
+}
+
+.name {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 23px;
+    text-transform: uppercase;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 9px;
+    align-items: center;
+}
+
+button {
+    min-height: 42px;
+    border: 2px solid var(--ink);
+    background: var(--accent);
+    color: var(--ink);
+    padding: 8px 12px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+button:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+.speed.active {
+    background: var(--ink);
+    color: white;
+}
+
+.progress-wrap {
+    min-width: 0;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.time {
+    margin-top: 3px;
+    text-align: right;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 15px 20px;
+    border-top: 4px solid var(--ink);
+    background: var(--yellow);
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+@media (max-width: 760px) {
+    .page {
+        width: calc(100% - 18px);
+        margin: 10px auto;
+        box-shadow: 6px 6px 0 var(--pink);
+    }
+
+    header {
+        padding: 30px 18px 24px;
+    }
+
+    .hero,
+    .audio-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .audio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .progress-wrap {
+        grid-column: 1 / -1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+    <div class="kicker">Deutsch · Hörverstehen · App-Beratung</div>
+
+    <h1>
+        Welche <span>App</span><br>
+        passt zu mir?
+    </h1>
+
+    <p class="subtitle">
+        Zehn Menschen suchen eine App.
+        Höre genau zu und finde die passende Werbung.
+    </p>
+</header>
+
+<section class="hero">
+
+    <div class="collage-frame">
+        <img src="Collage.png" alt="Die zehn Personen">
+    </div>
+
+    <div class="instructions">
+        <strong>DEINE AUFGABE:</strong>
+        Höre die zehn Personen. Ordne jeder Person eine App von
+        <strong>A–J</strong> zu. Jede App passt nur einmal.
+    </div>
+
+</section>
+
+<section class="audio-section">
+
+    <h2 class="section-title">Jetzt anhören!</h2>
+
+    <p class="section-note">
+        ▶ Normal hören · 🐢 Langsam = 0,75×
+    </p>
+
+    <div class="audio-grid" id="audioGrid"></div>
+
+</section>
+
+<footer>
+    APP-FINDER 2000™ · 10 MENSCHEN · 10 APPS · 1 PERFEKTES MATCH
+</footer>
+
+</div>
+
+<script>
+
+const people = [
+    { name: "Nina",    file: "1_Nina.mp3" },
+    { name: "Chen",    file: "2_Chen.mp3" },
+    { name: "Jonas",   file: "3_Jonas.mp3" },
+    { name: "Lisa",    file: "4_Lisa.mp3" },
+    { name: "Timo",    file: "5_Timo.mp3" },
+    { name: "Miri",    file: "6_Miri.mp3" },
+    { name: "Michael", file: "7_Mikkel.mp3" },
+    { name: "Patrick", file: "8_Pat.mp3" },
+    { name: "Sophie",  file: "9_Sophie.mp3" },
+    { name: "Anna",    file: "10_Anna.mp3" }
+];
+
+const grid = document.getElementById("audioGrid");
+
+let currentAudio = null;
+let currentButton = null;
+
+function formatTime(seconds) {
+    if (!Number.isFinite(seconds)) return "0:00";
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+}
+
+people.forEach((person, index) => {
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const audio = new Audio(person.file);
+    audio.preload = "metadata";
+
+    card.innerHTML = `
+        <div class="card-head">
+            <div class="number">${String(index + 1).padStart(2, "0")}</div>
+            <div class="name">${person.name}</div>
+        </div>
+
+        <div class="controls">
+            <button class="play">▶ HÖREN</button>
+            <button class="speed">🐢 LANGSAM</button>
+
+            <div class="progress-wrap">
+                <input class="progress"
+                       type="range"
+                       min="0"
+                       max="100"
+                       value="0"
+                       step="0.1">
+
+                <div class="time">
+                    <span class="current">0:00</span>
+                    /
+                    <span class="duration">0:00</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const play = card.querySelector(".play");
+    const speed = card.querySelector(".speed");
+    const progress = card.querySelector(".progress");
+    const current = card.querySelector(".current");
+    const duration = card.querySelector(".duration");
+
+    audio.addEventListener("loadedmetadata", () => {
+        duration.textContent = formatTime(audio.duration);
+    });
+
+    play.addEventListener("click", () => {
+
+        if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+
+            if (currentButton) {
+                currentButton.textContent = "▶ HÖREN";
+            }
+        }
+
+        if (audio.paused) {
+            audio.play();
+            play.textContent = "❚❚ PAUSE";
+            currentAudio = audio;
+            currentButton = play;
+        } else {
+            audio.pause();
+            play.textContent = "▶ HÖREN";
+        }
+    });
+
+    speed.addEventListener("click", () => {
+
+        if (audio.playbackRate === 1) {
+            audio.playbackRate = 0.75;
+            speed.classList.add("active");
+            speed.textContent = "🐢 0,75×";
+        } else {
+            audio.playbackRate = 1;
+            speed.classList.remove("active");
+            speed.textContent = "🐢 LANGSAM";
+        }
+    });
+
+    audio.addEventListener("timeupdate", () => {
+
+        if (!audio.duration) return;
+
+        progress.value =
+            (audio.currentTime / audio.duration) * 100;
+
+        current.textContent =
+            formatTime(audio.currentTime);
+    });
+
+    progress.addEventListener("input", () => {
+
+        if (!audio.duration) return;
+
+        audio.currentTime =
+            (progress.value / 100) * audio.duration;
+    });
+
+    audio.addEventListener("ended", () => {
+        play.textContent = "▶ HÖREN";
+        progress.value = 0;
+        current.textContent = "0:00";
+    });
+
+    grid.appendChild(card);
+});
+
+</script>
+
+</body>
+</html>
